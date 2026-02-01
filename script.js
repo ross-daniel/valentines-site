@@ -1,3 +1,6 @@
+const VALENTINE_SCREEN = "valentine-screen"
+const STINKY_SCREEN = "stinky-screen"
+
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
 
@@ -8,6 +11,20 @@ function showScreen(id) {
 
   // Optional: track what happened
   // localStorage.setItem("lastScreen", id);
+}
+
+function evaluateName() {
+  const inputElement = document.getElementById("name-input");
+  const name = inputElement.value;
+  const normalizedName = name.toLowerCase()
+
+  if (normalizedName == "peyton" || normalizedName == "peyton morris" || normalizedName == "peyton grace" || normalizedName == "peyton grace morris") {
+    // ask peyton to be my valentine
+    showScreen(VALENTINE_SCREEN)
+  } else {
+    // tell this random chick that isn't my girlfriend she's stinky
+    showScreen(STINKY_SCREEN)
+  }
 }
 
 function onButtonClick(e) {

@@ -10,8 +10,22 @@
 <body>
   <main class="card">
 
-    <!-- Screen 1: greeting / question -->
+    <!-- Screen 1: greeting / make sure this is peyton -->
+
     <section id="screen-start" class="screen active" aria-labelledby="title">
+      <h1 id="title">Hey there</h1>
+
+      <div class="question">
+        <p class="prompt">What's your name?</p>
+        <div class="q-box">
+          <input type="text" id="name-input" placeholder="">
+          <button class="btn btn-submit" onclick=evaluateName()>Submit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Valentine Screen: Ask Peyton to be my Valentine -->
+    <section id="valentine-screen" class="screen" aria-labelledby="title">
       <h1 id="title">Hey you 🥰</h1>
       <p class="subtitle">I have a very important question…</p>
 
@@ -24,6 +38,12 @@
       </div>
 
       <p class="hint">P.S. You can’t break this website 😄</p>
+    </section>
+
+    <!-- Stinky Screen: Tell this random girl that isnt my girlfriend that she stinks -->
+    <section id="stinky-screen" class="screen" aria-labelledby="title">
+      <h1 id="title">Ewwwwwwwww 🤢</h1>
+      <p class="subtitle">Sorry, not interested.  I only have eyes for Peyton</p>
     </section>
 
     <!-- Screen 2: yes branch -->
