@@ -70,9 +70,104 @@ input {
 .hint { margin-top: 16px; opacity: 0.7; }
 .tiny { margin-top: 14px; font-size: 0.9rem; opacity: 0.7; }
 
+/* Heart Frames*/
+.heart-frame {
+  position: relative;
+  border-radius: 18px;
+  padding: 22px;
+  background: rgba(255,255,255,0.85);
+}
+
+.heart-frame::before {
+  content: "";
+  position: absolute;
+  inset: -10px;              /* thickness of the frame */
+  padding: 10px;
+  border-radius: 22px;
+  pointer-events: none;
+
+  /* the “hearts” pattern */
+  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='34'%20height='34'%20viewBox='0%200%2034%2034'%3E%3Ctext%20x='17'%20y='23'%20text-anchor='middle'%20font-size='20'%3E%F0%9F%92%97%3C/text%3E%3C/svg%3E") repeat;
+  background-size: 28px 28px;
+
+  /* punch a hole so it becomes a frame */
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.heart-frame::before {
+  animation: heartsScroll 6s linear infinite;
+}
+
+@keyframes heartsScroll {
+  from { background-position: 0 0; }
+  to   { background-position: 120px 120px; }
+}
+
 /* Screen system */
 .screen { display: none; }
 .screen.active { display: block; }
+
+
+/* Make the button area a safe "playground" for the No button */
+#choice-area {
+  position: relative;
+  min-height: 52px; /* helps avoid layout jump on movement */
+}
+
+/* We'll move the No button with transforms */
+#btn-no {
+  position: relative;
+  will-change: transform;
+  touch-action: manipulation;
+}
+
+/* Confetti canvas (created by JS) */
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Radio Cards*/
+.choices { margin-top: 14px; }
+
+.choice-group {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px;
+  padding: 12px;
+  margin: 12px 0;
+  background: rgba(255,255,255,0.6);
+}
+
+.choice-group legend {
+  padding: 0 8px;
+  font-weight: 650;
+}
+
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  cursor: pointer;
+  user-select: none;
+  background: white;
+}
+
+.radio-card input { transform: scale(1.15); }
+.radio-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.06); }
+.radio-card:has(input:checked) { border-color: rgba(255,77,136,0.55); }
+
+.status { min-height: 1.25em; opacity: 0.85; margin: 8px 0 0; }
+.summary { margin-top: 10px; padding: 12px; border-radius: 14px; background: rgba(255,255,255,0.7); }
 
 /* Optional: little fade-in effect */
 .screen.active {

@@ -15,11 +15,13 @@
     <section id="screen-start" class="screen active" aria-labelledby="title">
       <h1 id="title">Hey there</h1>
 
-      <div class="question">
-        <p class="prompt">What's your name?</p>
-        <div class="q-box">
-          <input type="text" id="name-input" placeholder="">
-          <button class="btn btn-submit" onclick=evaluateName()>Submit</button>
+      <div class="heart-frame">
+        <div class="question">
+          <p class="prompt">What's your name?</p>
+          <div class="q-box">
+            <input type="text" id="name-input" placeholder="">
+            <button class="btn btn-submit" onclick=evaluateName()>Submit</button>
+          </div>
         </div>
       </div>
     </section>
@@ -29,11 +31,11 @@
       <h1 id="title">Hey you 🥰</h1>
       <p class="subtitle">I have a very important question…</p>
 
-      <div class="question">
+      <div id="choice-area" class="question">
         <p class="prompt">Will you be my Valentine? 💘</p>
         <div class="btn-row">
-          <button class="btn btn-primary" data-next="screen-yes">Yes! 💖</button>
-          <button class="btn btn-secondary" data-next="screen-no">No 🙈</button>
+          <button id="btn-yes" class="btn btn-primary" data-next="screen-yes" data-burst="heart">Yes! 💖</button>
+          <button id="btn-no" class="btn btn-secondary" data-next="screen-no">No 🙈</button>
         </div>
       </div>
 
@@ -49,37 +51,127 @@
     <!-- Screen 2: yes branch -->
     <section id="screen-yes" class="screen" aria-live="polite">
       <h2>YAYYYYY 💞</h2>
-      <p>You just made me ridiculously happy 😊</p>
+      <p>You just made me the happiest guy on earth 😊</p>
+      <p> Ready to claim your reward and put together the perfect date night?  Just click Continue! </p>
 
-      <div class="reveal">
+      <!--<div class="reveal">
         <p>Now here’s your reward:</p>
         <ul>
           <li>🌹 A date of your choosing</li>
           <li>🍫 A sweet treat</li>
           <li>🎬 A cozy movie night</li>
         </ul>
-      </div>
+      </div>-->
 
       <div class="btn-row">
         <button class="btn" data-next="screen-start">Back ↩</button>
-        <button class="btn btn-primary" data-next="screen-final">Continue ✨</button>
+        <button class="btn btn-primary" data-next="plan-date-screen">Continue ✨</button>
       </div>
     </section>
 
     <!-- Screen 3: no branch -->
     <section id="screen-no" class="screen" aria-live="polite">
       <h2>Oop 😅</h2>
-      <p>That’s okay… but I made a button for reconsideration.</p>
+      <p>That’s okay… but I'll ask again anyway.</p>
+      <p>Will you please be my Valentine?</p>
+
+      <div class="animation">
+        <img src="assets/mrboss_begging.gif" alt="Mr Boss Beg" width="300">
+      </div>
 
       <div class="btn-row">
-        <button class="btn btn-primary" data-next="screen-yes">Actually yes 💘</button>
-        <button class="btn" data-next="screen-start">Go back ↩</button>
+        <button class="btn btn-primary" data-next="screen-yes" data-burst="heart">Actually yes 💘</button>
+        <button class="btn" data-next="screen-no" data-burst="sad">Nah, you're chopped</button>
       </div>
 
       <p class="tiny">(*this website was emotionally engineered)</p>
     </section>
 
-    <!-- Screen 4: final -->
+    <section id="plan-date-screen" class="screen" aria-live="polite">
+      <form id="choices-form" class="choices">
+        <fieldset class="choice-group">
+          <legend>First, I'll wine and dine you.  Choose your entree preference below 🍽️</legend>
+
+          <label class="radio-card">
+            <input type="radio" name="dinner" value="Steak" required>
+            <span>🥩 Steak and Potatoes</span>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="dinner" value="Pasta" required>
+            <span>🍝 Pasta in a Sun Dried Tomato Sauce</span>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="dinner" value="Fish" required>
+            <span>🐟 Pan Fried Fish with Lemon Garlic Butter Sauce</span>
+          </label>
+        </fieldset>
+         
+        <fieldset class="choice-group">
+          <legend>I gotta keep that brain of yours stimulated too, pick a fun date-night activity! 🎉</legend>
+
+          <label class="radio-card">
+            <input type="radio" name="activity" value="Movie night" required>
+            <span>🎬 Movie night</span>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="activity" value="Bowling" required>
+            <span>🎳 Pool/Darts/Bowling</span>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="activity" value="Walk / date stroll" required>
+            <span>🎨 Painting/Crafting</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="choice-group">
+          <legend>The night wouldn't be complete without a sweet treat for the sweetest girl in the world 🍰</legend>
+
+          <label class="radio-card">
+            <input type="radio" name="dessert" value="Ice cream" required>
+            <span>🍦 Ice Cream</span>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="dessert" value="Brownie" required>
+            <span>🍫 Brownies</span>
+          </label>
+
+          <label class="radio-card">
+            <input type="radio" name="dessert" value="Cheesecake" required>
+            <span>🍰 Cheesecake</span>
+          </label>
+        </fieldset>
+
+
+        <p id="choices-status" class="status" role="status" aria-live="polite"></p>
+
+      </form>
+      <div class="btn-row">
+        <button type="button" class="btn" data-next="screen-yes">Back ↩</button>
+        <button id="date-night-submit" type="submit" class="btn btn-primary" data-next="screen-confirmed-choices" data-burst="heart">Send my choices 💌</button>
+      </div>
+    </section>
+
+    <!-- Confirm Choices Screen -->
+    <section id="screen-confirmed-choices" class="screen" aria-live="polite">
+      <h2>Got it 💖</h2>
+      <p>I saved your choices!</p>
+      <div id="choices-summary" class="summary"></div>
+
+      <div class="animation">
+          <img src="assets/mrboss_dance.gif" alt="Mr Boss Dance" width="300">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" data-next="screen-final">Continue ✨</button>
+      </div>
+    </section>
+
+    <!-- Final Screen -->
     <section id="screen-final" class="screen" aria-live="polite">
       <h2>Officially my Valentine 💘</h2>
       <p>Text me: <strong>"I accept 💖"</strong> 😄</p>
