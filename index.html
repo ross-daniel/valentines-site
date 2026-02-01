@@ -1,1 +1,76 @@
-<title>💖</title>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💘 A Question for You</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="card">
+
+    <!-- Screen 1: greeting / question -->
+    <section id="screen-start" class="screen active" aria-labelledby="title">
+      <h1 id="title">Hey you 🥰</h1>
+      <p class="subtitle">I have a very important question…</p>
+
+      <div class="question">
+        <p class="prompt">Will you be my Valentine? 💘</p>
+        <div class="btn-row">
+          <button class="btn btn-primary" data-next="screen-yes">Yes! 💖</button>
+          <button class="btn btn-secondary" data-next="screen-no">No 🙈</button>
+        </div>
+      </div>
+
+      <p class="hint">P.S. You can’t break this website 😄</p>
+    </section>
+
+    <!-- Screen 2: yes branch -->
+    <section id="screen-yes" class="screen" aria-live="polite">
+      <h2>YAYYYYY 💞</h2>
+      <p>You just made me ridiculously happy 😊</p>
+
+      <div class="reveal">
+        <p>Now here’s your reward:</p>
+        <ul>
+          <li>🌹 A date of your choosing</li>
+          <li>🍫 A sweet treat</li>
+          <li>🎬 A cozy movie night</li>
+        </ul>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" data-next="screen-start">Back ↩</button>
+        <button class="btn btn-primary" data-next="screen-final">Continue ✨</button>
+      </div>
+    </section>
+
+    <!-- Screen 3: no branch -->
+    <section id="screen-no" class="screen" aria-live="polite">
+      <h2>Oop 😅</h2>
+      <p>That’s okay… but I made a button for reconsideration.</p>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" data-next="screen-yes">Actually yes 💘</button>
+        <button class="btn" data-next="screen-start">Go back ↩</button>
+      </div>
+
+      <p class="tiny">(*this website was emotionally engineered)</p>
+    </section>
+
+    <!-- Screen 4: final -->
+    <section id="screen-final" class="screen" aria-live="polite">
+      <h2>Officially my Valentine 💘</h2>
+      <p>Text me: <strong>"I accept 💖"</strong> 😄</p>
+
+      <div class="btn-row">
+        <button class="btn" data-next="screen-start">Replay 🔁</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
